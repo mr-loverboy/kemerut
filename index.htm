@@ -25,26 +25,19 @@
         .star { position: absolute; background: white; border-radius: 50%; opacity: 0.8; animation: twinkle infinite ease-in-out; }
         @keyframes twinkle { 0%, 100% { opacity: 0.3; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1.2); } }
 
-        /* --- CONTAINER (ADJUSTED PARA LUMAKI PICTURES) --- */
+        /* --- CONTAINER --- */
         .container {
             position: relative;
             z-index: 10;
-            
-            /* GINAWANG 95% para mas malapad sa mobile */
             width: 95%;          
             max-width: 380px;    
-            
-            /* BINAWASAN ANG PADDING (Space sa gilid) para lumaki laman */
             padding: 30px 15px;  
-            
-            /* Glass Effect */
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 25px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-            
             text-align: center;
             transition: all 0.5s ease;
         }
@@ -55,44 +48,22 @@
         
         /* --- INPUT --- */
         input { 
-            width: 100%; 
-            padding: 10px 0; 
-            background: transparent; 
-            border: none; 
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3); 
-            color: white; 
-            text-align: center; 
-            font-family: 'Poppins', sans-serif; 
-            outline: none; 
-            margin-bottom: 5px; 
-            font-size: 28px; 
-            letter-spacing: 15px; 
-            font-weight: 600;
+            width: 100%; padding: 10px 0; background: transparent; border: none; border-bottom: 1px solid rgba(255, 255, 255, 0.3); 
+            color: white; text-align: center; font-family: 'Poppins', sans-serif; outline: none; margin-bottom: 5px; 
+            font-size: 28px; letter-spacing: 15px; font-weight: 600;
         }
-        
         input:focus { border-bottom: 1px solid #d8b4fe; }
-        
-        input::placeholder { 
-            color: rgba(255, 255, 255, 0.4); 
-            font-size: 14px; 
-            letter-spacing: 2px; 
-            font-weight: 400;
-            text-transform: uppercase;
-        }
+        input::placeholder { color: rgba(255, 255, 255, 0.4); font-size: 14px; letter-spacing: 2px; font-weight: 400; text-transform: uppercase; }
 
         #warning-msg { color: #ff6b6b; font-size: 12px; margin-top: 15px; min-height: 18px; font-weight: 500; }
 
         /* --- BUTTONS --- */
         .button-group { display: flex; gap: 10px; justify-content: center; }
-
         .btn { padding: 12px; border: none; border-radius: 50px; font-size: 13px; font-weight: 600; cursor: pointer; transition: 0.2s; text-transform: uppercase; }
-        
         .btn-yes { background: white; color: #1e0b2e; border: 2px solid white; flex: 1; }
         .btn-yes:hover { transform: scale(1.05); box-shadow: 0 0 15px rgba(255,255,255,0.4); }
-        
         .btn-no { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.3); flex: 1; }
         .btn-no:hover { background: rgba(255,255,255,0.1); border-color: white; }
-
         .btn-full { width: 100%; background: #d8b4fe; color: #1e0b2e; margin-top: 20px; }
         .btn-full:hover { transform: scale(1.02); }
 
@@ -103,67 +74,30 @@
         }
         .gif-container img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
-        /* --- FLIP CARD GALLERY (UPDATED GAP) --- */
-        .gallery-grid { 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; /* 2 columns */
-            
-            /* GAP: Binawasan ko (8px na lang) para mas malapad ang picture */
-            gap: 8px; 
-            
-            margin-bottom: 20px; 
-        }
-
-        .flip-card { 
-            background-color: transparent; 
-            width: 100%; 
-            aspect-ratio: 3/4; 
-            perspective: 1000px; 
-            cursor: pointer; 
-        }
-
-        .flip-card-inner { 
-            position: relative; width: 100%; height: 100%; text-align: center; 
-            transition: transform 0.6s; transform-style: preserve-3d; border-radius: 15px; 
-        }
-        
+        /* --- FLIP CARD GALLERY --- */
+        .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 20px; }
+        .flip-card { background-color: transparent; width: 100%; aspect-ratio: 3/4; perspective: 1000px; cursor: pointer; }
+        .flip-card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; border-radius: 15px; }
         .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
-
-        .flip-card-front, .flip-card-back { 
-            position: absolute; width: 100%; height: 100%; 
-            -webkit-backface-visibility: hidden; backface-visibility: hidden; 
-            border-radius: 15px; display: flex; align-items: center; justify-content: center; 
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3); 
-        }
-        
-        .flip-card-front { 
-            background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%); 
-            color: white; font-weight: bold; font-size: 12px; letter-spacing: 1px;
-        }
-        
-        .flip-card-back { 
-            background: white; transform: rotateY(180deg); overflow: hidden; 
-        }
-        
-        .flip-card-back img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-        }
+        .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; border-radius: 15px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 8px rgba(0,0,0,0.3); }
+        .flip-card-front { background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%); color: white; font-weight: bold; font-size: 12px; letter-spacing: 1px; }
+        .flip-card-back { background: white; transform: rotateY(180deg); overflow: hidden; }
+        .flip-card-back img { width: 100%; height: 100%; object-fit: cover; }
 
         /* --- ANIMATIONS --- */
         .view-section { display: none; animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55); }
         @keyframes popIn { 0% { opacity: 0; transform: scale(0.8); } 100% { opacity: 1; transform: scale(1); } }
-        
         .shake { animation: shake 0.4s ease-in-out; }
         @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
-
         .blocked-icon { font-size: 60px; margin-top: 20px; animation: pulse 2s infinite; }
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
         
-        .letter-content { max-height: 300px; overflow-y: auto; text-align: left; margin-top: 10px; font-size: 13px; padding-right: 5px; color: #eee; }
+        .letter-content { max-height: 300px; overflow-y: auto; text-align: left; margin-top: 10px; font-size: 13px; padding-right: 5px; color: #eee; white-space: pre-wrap; }
         .letter-content::-webkit-scrollbar { width: 3px; }
         .letter-content::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.3); border-radius: 10px; }
+        .cursor { display: inline-block; width: 2px; background-color: #d8b4fe; animation: blink 1s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
     </style>
 </head>
 <body>
@@ -199,7 +133,7 @@
 
         <div id="view-q1" class="view-section">
             <div class="gif-container">
-                <img src="1.gif" alt="Cat">
+                <img src="1.gif" alt="Hi Cat">
             </div>
             <p>Hi Mara Grace hehehe, I just miss you so much.</p>
             <div class="button-group">
@@ -210,7 +144,7 @@
 
         <div id="view-q2" class="view-section">
             <div class="gif-container">
-                <img src="2.gif" alt="Cat">
+                <img src="2.gif" alt="Miss You Cat">
             </div>
             <p>Ayiee really?? Do you miss me??</p>
             <div class="button-group">
@@ -221,7 +155,7 @@
 
         <div id="view-q3" class="view-section">
             <div class="gif-container">
-                <img src="3.gif" alt="Cat">
+                <img src="3.gif" alt="Love Cat">
             </div>
             <p>How much do you love me?</p>
             <div class="button-group">
@@ -238,33 +172,25 @@
                 <div class="flip-card" onclick="flipCard(this)">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">CLICK ME</div>
-                        <div class="flip-card-back">
-                            <img src="mara1.jpg" alt="Pic1">
-                        </div>
+                        <div class="flip-card-back"><img src="mara1.jpg" alt="Pic1"></div>
                     </div>
                 </div>
                 <div class="flip-card" onclick="flipCard(this)">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">CLICK ME</div>
-                        <div class="flip-card-back">
-                            <img src="mara2.jpg" alt="Pic2">
-                        </div>
+                        <div class="flip-card-back"><img src="mara2.jpg" alt="Pic2"></div>
                     </div>
                 </div>
                 <div class="flip-card" onclick="flipCard(this)">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">CLICK ME</div>
-                        <div class="flip-card-back">
-                            <img src="mara3.jpg" alt="Pic3">
-                        </div>
+                        <div class="flip-card-back"><img src="mara3.jpg" alt="Pic3"></div>
                     </div>
                 </div>
                 <div class="flip-card" onclick="flipCard(this)">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">CLICK ME</div>
-                        <div class="flip-card-back">
-                            <img src="mara4.jpg" alt="Pic4">
-                        </div>
+                        <div class="flip-card-back"><img src="mara4.jpg" alt="Pic4"></div>
                     </div>
                 </div>
             </div>
@@ -272,22 +198,22 @@
 
         <div id="view-letter" class="view-section">
             <h1>Hello, lovelove</h1>
-            <div class="letter-content">
-                <p>
-                    I just want you to know this: you are the quiet certainty in a world full of doubts. I’ve crossed paths with people who only stayed halfway, but you… you’re the one my heart didn’t want to let go of.
-                    <br><br>
-                    You make the ordinary feel lighter, and the heavy days feel survivable. I don’t say it often, but I choose you — intentionally, consistently, and without hesitation.
-                    <br><br>
-                    If life becomes loud, remember this: my heart is always on your side.
-                    I love you, more than my words ever manage to say.
-                </p>
-                <p style="text-align: right; margin-top: 20px;">- Ejaay</p>
-            </div>
+            <div class="letter-content" id="typing-box"></div>
         </div>
 
     </div>
 
     <script>
+        // --- LETTER MESSAGE ---
+        const messageText = `I just want you to know this: you are the quiet certainty in a world full of doubts. I’ve crossed paths with people who only stayed halfway, but you… you’re the one my heart didn’t want to let go of.
+
+You make the ordinary feel lighter, and the heavy days feel survivable. I don’t say it often, but I choose you — intentionally, consistently, and without hesitation.
+
+If life becomes loud, remember this: my heart is always on your side.
+I love you, more than my words ever manage to say.
+
+- Ejaay`;
+
         // --- STARS BG ---
         const cont = document.getElementById('star-container');
         for(let i=0; i<80; i++){
@@ -330,16 +256,29 @@
 
         function blockUser() { trap(); }
 
+        // --- LOGIN LOGIC WITH VALIDATION ---
         function checkPass() {
             if (isBlocked === 'true') return;
 
             const input = document.getElementById('pass');
             const warning = document.getElementById('warning-msg');
             const container = document.getElementById('main-container');
+            const enteredValue = input.value;
 
-            if (input.value === correctPass) {
+            // 1. VALIDATION: Check kung 2 digits ba ang laman
+            if (enteredValue.length !== 2) {
+                container.classList.add('shake');
+                setTimeout(()=>container.classList.remove('shake'), 400);
+                warning.innerText = "Please enter 2 digits.";
+                warning.style.color = "#ff6b6b";
+                return; // STOP HERE! Wag bawasan ang attempts.
+            }
+
+            // 2. CHECK PASSWORD
+            if (enteredValue === correctPass) {
                 showView('view-q1');
             } else {
+                // WRONG PASSWORD (Now we decrease attempts)
                 attemptsLeft--;
                 localStorage.setItem('attemptsLeft', attemptsLeft);
                 
@@ -372,8 +311,27 @@
             if(flippedCount === totalCards) {
                 setTimeout(() => {
                     showView('view-letter');
+                    startTyping();
                 }, 1000);
             }
+        }
+
+        function startTyping() {
+            const element = document.getElementById("typing-box");
+            let i = 0;
+            const speed = 50; 
+
+            function type() {
+                if (i < messageText.length) {
+                    element.innerHTML += messageText.charAt(i);
+                    element.scrollTop = element.scrollHeight;
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    element.innerHTML += '<span class="cursor">&nbsp;</span>';
+                }
+            }
+            type();
         }
     </script>
 </body>
