@@ -25,13 +25,17 @@
         .star { position: absolute; background: white; border-radius: 50%; opacity: 0.8; animation: twinkle infinite ease-in-out; }
         @keyframes twinkle { 0%, 100% { opacity: 0.3; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1.2); } }
 
-        /* --- CONTAINER (Responsive) --- */
+        /* --- CONTAINER (ADJUSTED PARA LUMAKI PICTURES) --- */
         .container {
             position: relative;
             z-index: 10;
-            width: 90%;          /* Mobile: Halos puno screen */
-            max-width: 400px;    /* Laptop: Hanggang dito lang laki para di sabog */
-            padding: 35px 25px;
+            
+            /* GINAWANG 95% para mas malapad sa mobile */
+            width: 95%;          
+            max-width: 380px;    
+            
+            /* BINAWASAN ANG PADDING (Space sa gilid) para lumaki laman */
+            padding: 30px 15px;  
             
             /* Glass Effect */
             background: rgba(255, 255, 255, 0.05);
@@ -49,7 +53,7 @@
         h1 { font-size: 18px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 25px; color: #d8b4fe; font-weight: 700; }
         p { font-size: 14px; line-height: 1.6; color: #f0f0f0; margin-bottom: 25px; }
         
-        /* --- INPUT (Nasa loob na ang label) --- */
+        /* --- INPUT --- */
         input { 
             width: 100%; 
             padding: 10px 0; 
@@ -61,8 +65,6 @@
             font-family: 'Poppins', sans-serif; 
             outline: none; 
             margin-bottom: 5px; 
-            
-            /* Font size pag nagta-type ng numbers */
             font-size: 28px; 
             letter-spacing: 15px; 
             font-weight: 600;
@@ -70,10 +72,9 @@
         
         input:focus { border-bottom: 1px solid #d8b4fe; }
         
-        /* Placeholder Style (Yung "ENTER 2 DIGITS") */
         input::placeholder { 
             color: rgba(255, 255, 255, 0.4); 
-            font-size: 14px; /* Maliit at nababasa */
+            font-size: 14px; 
             letter-spacing: 2px; 
             font-weight: 400;
             text-transform: uppercase;
@@ -102,18 +103,21 @@
         }
         .gif-container img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
-        /* --- FLIP CARD GALLERY (Fixed aspect ratio for portraits) --- */
+        /* --- FLIP CARD GALLERY (UPDATED GAP) --- */
         .gallery-grid { 
             display: grid; 
             grid-template-columns: 1fr 1fr; /* 2 columns */
-            gap: 15px; 
+            
+            /* GAP: Binawasan ko (8px na lang) para mas malapad ang picture */
+            gap: 8px; 
+            
             margin-bottom: 20px; 
         }
 
         .flip-card { 
             background-color: transparent; 
             width: 100%; 
-            aspect-ratio: 3/4; /* PORTRAIT RATIO (Perfect para sa mobile pics) */
+            aspect-ratio: 3/4; 
             perspective: 1000px; 
             cursor: pointer; 
         }
@@ -141,11 +145,10 @@
             background: white; transform: rotateY(180deg); overflow: hidden; 
         }
         
-        /* Dito yung magic para mag fit */
         .flip-card-back img { 
             width: 100%; 
             height: 100%; 
-            object-fit: cover; /* Pinupuno niya yung card, walang puting space */
+            object-fit: cover; 
         }
 
         /* --- ANIMATIONS --- */
@@ -196,7 +199,7 @@
 
         <div id="view-q1" class="view-section">
             <div class="gif-container">
-                <img src="1.gif" alt="Hi Cat">
+                <img src="1.gif" alt="Cat">
             </div>
             <p>Hi Mara Grace hehehe, I just miss you so much.</p>
             <div class="button-group">
@@ -207,7 +210,7 @@
 
         <div id="view-q2" class="view-section">
             <div class="gif-container">
-                <img src="2.gif" alt="Miss You Cat">
+                <img src="2.gif" alt="Cat">
             </div>
             <p>Ayiee really?? Do you miss me??</p>
             <div class="button-group">
@@ -218,7 +221,7 @@
 
         <div id="view-q3" class="view-section">
             <div class="gif-container">
-                <img src="3.gif" alt="Love Cat">
+                <img src="3.gif" alt="Cat">
             </div>
             <p>How much do you love me?</p>
             <div class="button-group">
