@@ -25,25 +25,19 @@
         .star { position: absolute; background: white; border-radius: 50%; opacity: 0.8; animation: twinkle infinite ease-in-out; }
         @keyframes twinkle { 0%, 100% { opacity: 0.3; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1.2); } }
 
-        /* --- CONTAINER (MAXIMIZED FOR MOBILE) --- */
+        /* --- CONTAINER --- */
         .container {
             position: relative;
             z-index: 10;
-            
-            /* SAGAD NA SA SCREEN */
-            width: 95vw;         /* 95% of Viewport Width */
-            max-width: 450px;    /* Mas malapad na limit para sa malaking phone/laptop */
-            
-            /* KONTING PADDING LANG PARA MALAKI LAMAN */
+            width: 95vw;         
+            max-width: 450px;    
             padding: 25px 10px;  
-            
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 20px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-            
             text-align: center;
             transition: all 0.5s ease;
         }
@@ -99,19 +93,18 @@
         }
         .gif-container img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
-        /* --- FLIP CARD GALLERY (BIGGER IMAGES FIX) --- */
+        /* --- FLIP CARD GALLERY --- */
         .gallery-grid { 
             display: grid; 
             grid-template-columns: 1fr 1fr; /* 2 columns */
-            gap: 8px; /* Maliit na gap para dikit sila */
+            gap: 8px; 
             margin-bottom: 20px; 
         }
 
         .flip-card { 
             background-color: transparent; 
             width: 100%; 
-            /* GINAWA KONG FIXED HEIGHT NA MATANGKAD */
-            height: 220px; /* TALL PORTRAIT SIZE - Malaki na to sa mobile */
+            height: 220px; /* TALL PORTRAIT SIZE */
             perspective: 1000px; 
             cursor: pointer; 
         }
@@ -142,7 +135,7 @@
         .flip-card-back img { 
             width: 100%; 
             height: 100%; 
-            object-fit: cover; /* SINASAKOP BUONG CARD */
+            object-fit: cover; 
         }
 
         /* --- ANIMATIONS --- */
@@ -178,7 +171,7 @@
 
     <div class="container" id="main-container">
         
-        <div id="view-login" class="view-section" style="display: block;">
+        <div id="view-login" class="view-section">
             <h1>ACCESS VERIFICATION</h1>
             
             <input 
@@ -303,17 +296,38 @@ I love you, more than my words ever manage to say.
         const correctPass = "11"; 
         let attemptsLeft = localStorage.getItem('attemptsLeft');
         let isBlocked = localStorage.getItem('isBlocked');
+        let savedView = localStorage.getItem('currentView'); // GET LAST SAVED VIEW
 
         if (attemptsLeft === null) { attemptsLeft = 5; }
         else { attemptsLeft = parseInt(attemptsLeft); }
 
+        // --- INIT: CHECK STATUS ---
         if (isBlocked === 'true') {
             showView('view-blocked');
+        } 
+        else if (savedView) {
+            // Restore last view
+            showView(savedView);
+            
+            // Special handling for letter to restart typing
+            if(savedView === 'view-letter') {
+                startTyping();
+            }
+        } 
+        else {
+            // Default to Login
+            showView('view-login');
         }
 
+        // --- NAVIGATION & SAVING ---
         function showView(id) {
             document.querySelectorAll('.view-section').forEach(el => el.style.display = 'none');
             document.getElementById(id).style.display = 'block';
+            
+            // Save current view only if not blocked/login
+            if(id !== 'view-login' && id !== 'view-blocked') {
+                localStorage.setItem('currentView', id);
+            }
         }
 
         function nextQuestion(id) {
@@ -337,7 +351,7 @@ I love you, more than my words ever manage to say.
             const container = document.getElementById('main-container');
             const enteredValue = input.value;
 
-            // VALIDATION: Check length
+            // VALIDATION: Check length (NO ATTEMPT DEDUCTION)
             if (enteredValue.length !== 2) {
                 container.classList.add('shake');
                 setTimeout(()=>container.classList.remove('shake'), 400);
@@ -348,7 +362,7 @@ I love you, more than my words ever manage to say.
 
             // CHECK PASSWORD
             if (enteredValue === correctPass) {
-                showView('view-q1');
+                showView('view-q1'); // Proceed and save view
             } else {
                 attemptsLeft--;
                 localStorage.setItem('attemptsLeft', attemptsLeft);
@@ -389,6 +403,7 @@ I love you, more than my words ever manage to say.
 
         function startTyping() {
             const element = document.getElementById("typing-box");
+            element.innerHTML = ""; // Clear first
             let i = 0;
             const speed = 50; 
 
