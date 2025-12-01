@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Mara Grace</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- MAIN SETTINGS --- */
+        body, html {
+            height: 100%;
+            margin: 0;
+            overflow-x: hidden;
+            font-family: 'Poppins', sans-serif;
+            background-color: #1e0b2e; /* Solid Purple */
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* --- STARS --- */
+        .stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+        .star { position: absolute; background: white; border-radius: 50%; opacity: 0.8; animation: twinkle infinite ease-in-out; }
+        @keyframes twinkle { 0%, 100% { opacity: 0.3; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1.2); } }
+
+        /* --- CONTAINER (Responsive) --- */
+        .container {
+            position: relative;
+            z-index: 10;
+            width: 90%;          /* Mobile: Halos puno screen */
+            max-width: 400px;    /* Laptop: Hanggang dito lang laki para di sabog */
+            padding: 35px 25px;
+            
+            /* Glass Effect */
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+            
+            text-align: center;
+            transition: all 0.5s ease;
+        }
+
+        /* --- TEXT --- */
+        h1 { font-size: 18px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 25px; color: #d8b4fe; font-weight: 700; }
+        p { font-size: 14px; line-height: 1.6; color: #f0f0f0; margin-bottom: 25px; }
+        
+        /* --- INPUT (Nasa loob na ang label) --- */
+        input { 
+            width: 100%; 
+            padding: 10px 0; 
+            background: transparent; 
+            border: none; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3); 
+            color: white; 
+            text-align: center; 
+            font-family: 'Poppins', sans-serif; 
+            outline: none; 
+            margin-bottom: 5px; 
+            
+            /* Font size pag nagta-type ng numbers */
+            font-size: 28px; 
+            letter-spacing: 15px; 
+            font-weight: 600;
+        }
+        
+        input:focus { border-bottom: 1px solid #d8b4fe; }
+        
+        /* Placeholder Style (Yung "ENTER 2 DIGITS") */
+        input::placeholder { 
+            color: rgba(255, 255, 255, 0.4); 
+            font-size: 14px; /* Maliit at nababasa */
+            letter-spacing: 2px; 
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+
+        #warning-msg { color: #ff6b6b; font-size: 12px; margin-top: 15px; min-height: 18px; font-weight: 500; }
+
+        /* --- BUTTONS --- */
+        .button-group { display: flex; gap: 10px; justify-content: center; }
+
+        .btn { padding: 12px; border: none; border-radius: 50px; font-size: 13px; font-weight: 600; cursor: pointer; transition: 0.2s; text-transform: uppercase; }
+        
+        .btn-yes { background: white; color: #1e0b2e; border: 2px solid white; flex: 1; }
+        .btn-yes:hover { transform: scale(1.05); box-shadow: 0 0 15px rgba(255,255,255,0.4); }
+        
+        .btn-no { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.3); flex: 1; }
+        .btn-no:hover { background: rgba(255,255,255,0.1); border-color: white; }
+
+        .btn-full { width: 100%; background: #d8b4fe; color: #1e0b2e; margin-top: 20px; }
+        .btn-full:hover { transform: scale(1.02); }
+
+        /* --- GIF CONTAINER --- */
+        .gif-container {
+            width: 100%; height: 180px; margin: 0 auto 20px auto;
+            border-radius: 15px; overflow: hidden; display: flex; justify-content: center; align-items: center;
+        }
+        .gif-container img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+        /* --- FLIP CARD GALLERY (Fixed aspect ratio for portraits) --- */
+        .gallery-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; /* 2 columns */
+            gap: 15px; 
+            margin-bottom: 20px; 
+        }
+
+        .flip-card { 
+            background-color: transparent; 
+            width: 100%; 
+            aspect-ratio: 3/4; /* PORTRAIT RATIO (Perfect para sa mobile pics) */
+            perspective: 1000px; 
+            cursor: pointer; 
+        }
+
+        .flip-card-inner { 
+            position: relative; width: 100%; height: 100%; text-align: center; 
+            transition: transform 0.6s; transform-style: preserve-3d; border-radius: 15px; 
+        }
+        
+        .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+
+        .flip-card-front, .flip-card-back { 
+            position: absolute; width: 100%; height: 100%; 
+            -webkit-backface-visibility: hidden; backface-visibility: hidden; 
+            border-radius: 15px; display: flex; align-items: center; justify-content: center; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3); 
+        }
+        
+        .flip-card-front { 
+            background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%); 
+            color: white; font-weight: bold; font-size: 12px; letter-spacing: 1px;
+        }
+        
+        .flip-card-back { 
+            background: white; transform: rotateY(180deg); overflow: hidden; 
+        }
+        
+        /* Dito yung magic para mag fit */
+        .flip-card-back img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; /* Pinupuno niya yung card, walang puting space */
+        }
+
+        /* --- ANIMATIONS --- */
+        .view-section { display: none; animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55); }
+        @keyframes popIn { 0% { opacity: 0; transform: scale(0.8); } 100% { opacity: 1; transform: scale(1); } }
+        
+        .shake { animation: shake 0.4s ease-in-out; }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+
+        .blocked-icon { font-size: 60px; margin-top: 20px; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+        
+        .letter-content { max-height: 300px; overflow-y: auto; text-align: left; margin-top: 10px; font-size: 13px; padding-right: 5px; color: #eee; }
+        .letter-content::-webkit-scrollbar { width: 3px; }
+        .letter-content::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.3); border-radius: 10px; }
+    </style>
+</head>
+<body>
+
+    <div class="stars" id="star-container"></div>
+
+    <div class="container" id="main-container">
+        
+        <div id="view-login" class="view-section" style="display: block;">
+            <h1>ACCESS VERIFICATION</h1>
+            
+            <input 
+                type="password" 
+                id="pass" 
+                placeholder="ENTER 2 DIGITS" 
+                maxlength="2" 
+                inputmode="numeric" 
+                oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+            >
+            
+            <div id="warning-msg"></div>
+            <button class="btn btn-full" onclick="checkPass()">Unlock</button>
+        </div>
+
+        <div id="view-blocked" class="view-section">
+            <h1 style="color: #ff6b6b;">SYSTEM BLOCKED</h1>
+            <p>
+                Access permanently revoked. <br>
+                Reason: Failed verification or Wrong Answer.
+            </p>
+            <div class="blocked-icon">🚫</div>
+        </div>
+
+        <div id="view-q1" class="view-section">
+            <div class="gif-container">
+                <img src="1.gif" alt="Hi Cat">
+            </div>
+            <p>Hi Mara Grace hehehe, I just miss you so much.</p>
+            <div class="button-group">
+                <button class="btn btn-yes" onclick="nextQuestion('view-q2')">I miss you too</button>
+                <button class="btn btn-no" onclick="trap()">I don't miss you</button>
+            </div>
+        </div>
+
+        <div id="view-q2" class="view-section">
+            <div class="gif-container">
+                <img src="2.gif" alt="Miss You Cat">
+            </div>
+            <p>Ayiee really?? Do you miss me??</p>
+            <div class="button-group">
+                <button class="btn btn-yes" onclick="nextQuestion('view-q3')">Yes, really!</button>
+                <button class="btn btn-no" onclick="trap()">Not really</button>
+            </div>
+        </div>
+
+        <div id="view-q3" class="view-section">
+            <div class="gif-container">
+                <img src="3.gif" alt="Love Cat">
+            </div>
+            <p>How much do you love me?</p>
+            <div class="button-group">
+                <button class="btn btn-yes" onclick="nextQuestion('view-gallery')">100%</button>
+                <button class="btn btn-no" onclick="trap()">0%</button>
+            </div>
+        </div>
+
+        <div id="view-gallery" class="view-section">
+            <h1>Memories</h1>
+            <p style="font-size: 12px; margin-bottom: 15px;">Click the cards to reveal.</p>
+            
+            <div class="gallery-grid">
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">CLICK ME</div>
+                        <div class="flip-card-back">
+                            <img src="mara1.jpg" alt="Pic1">
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">CLICK ME</div>
+                        <div class="flip-card-back">
+                            <img src="mara2.jpg" alt="Pic2">
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">CLICK ME</div>
+                        <div class="flip-card-back">
+                            <img src="mara3.jpg" alt="Pic3">
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card" onclick="flipCard(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">CLICK ME</div>
+                        <div class="flip-card-back">
+                            <img src="mara4.jpg" alt="Pic4">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-letter" class="view-section">
+            <h1>Hello, lovelove</h1>
+            <div class="letter-content">
+                <p>
+                    I just want you to know this: you are the quiet certainty in a world full of doubts. I’ve crossed paths with people who only stayed halfway, but you… you’re the one my heart didn’t want to let go of.
+                    <br><br>
+                    You make the ordinary feel lighter, and the heavy days feel survivable. I don’t say it often, but I choose you — intentionally, consistently, and without hesitation.
+                    <br><br>
+                    If life becomes loud, remember this: my heart is always on your side.
+                    I love you, more than my words ever manage to say.
+                </p>
+                <p style="text-align: right; margin-top: 20px;">- Ejaay</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // --- STARS BG ---
+        const cont = document.getElementById('star-container');
+        for(let i=0; i<80; i++){
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.left = Math.random()*100+'%';
+            star.style.top = Math.random()*100+'%';
+            const size = Math.random()*2;
+            star.style.width = size+'px'; star.style.height = size+'px';
+            star.style.animationDuration = (Math.random()*3+2)+'s';
+            cont.appendChild(star);
+        }
+
+        // --- GLOBAL VARIABLES ---
+        const correctPass = "11"; 
+        let attemptsLeft = localStorage.getItem('attemptsLeft');
+        let isBlocked = localStorage.getItem('isBlocked');
+
+        if (attemptsLeft === null) { attemptsLeft = 5; }
+        else { attemptsLeft = parseInt(attemptsLeft); }
+
+        if (isBlocked === 'true') {
+            showView('view-blocked');
+        }
+
+        function showView(id) {
+            document.querySelectorAll('.view-section').forEach(el => el.style.display = 'none');
+            document.getElementById(id).style.display = 'block';
+        }
+
+        function nextQuestion(id) {
+            showView(id);
+        }
+
+        function trap() {
+            isBlocked = true;
+            localStorage.setItem('isBlocked', 'true');
+            showView('view-blocked');
+        }
+
+        function blockUser() { trap(); }
+
+        function checkPass() {
+            if (isBlocked === 'true') return;
+
+            const input = document.getElementById('pass');
+            const warning = document.getElementById('warning-msg');
+            const container = document.getElementById('main-container');
+
+            if (input.value === correctPass) {
+                showView('view-q1');
+            } else {
+                attemptsLeft--;
+                localStorage.setItem('attemptsLeft', attemptsLeft);
+                
+                container.classList.add('shake');
+                setTimeout(()=>container.classList.remove('shake'), 400);
+                input.value = "";
+
+                if (attemptsLeft <= 0) {
+                    blockUser();
+                } else if (attemptsLeft === 1) {
+                    warning.innerText = "HALA HINDI NYA ALAM YUNG PINAKA IMPORTANTE NA DAY EVERY MONTH";
+                    warning.style.color = "#ff4757";
+                    warning.style.fontWeight = "bold";
+                } else {
+                    warning.innerText = "Wrong! " + attemptsLeft + " attempts left.";
+                    warning.style.color = "#ff6b6b";
+                    warning.style.fontWeight = "normal";
+                }
+            }
+        }
+
+        let flippedCount = 0;
+        const totalCards = 4;
+
+        function flipCard(card) {
+            if(card.classList.contains('flipped')) return;
+            card.classList.add('flipped');
+            flippedCount++;
+            
+            if(flippedCount === totalCards) {
+                setTimeout(() => {
+                    showView('view-letter');
+                }, 1000);
+            }
+        }
+    </script>
+</body>
+</html>
