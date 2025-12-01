@@ -30,14 +30,13 @@
             position: relative;
             z-index: 10;
             
-            /* DITO ANG PAGBABAGO PARA LUMAKI: */
-            width: 95%;          /* 95% ng screen ang sakop (halos sagad) */
-            max-width: 420px;    /* Tinaasan ang limit para sa malalaking phones */
+            /* SAGAD NA SA SCREEN */
+            width: 95vw;         /* 95% of Viewport Width */
+            max-width: 450px;    /* Mas malapad na limit para sa malaking phone/laptop */
             
-            /* Binawasan ang padding para mas malaki ang space ng pictures */
-            padding: 25px 15px;  
+            /* KONTING PADDING LANG PARA MALAKI LAMAN */
+            padding: 25px 10px;  
             
-            /* Glass Effect */
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
@@ -86,13 +85,10 @@
         .button-group { display: flex; gap: 10px; justify-content: center; }
 
         .btn { padding: 12px; border: none; border-radius: 50px; font-size: 13px; font-weight: 600; cursor: pointer; transition: 0.2s; text-transform: uppercase; }
-        
         .btn-yes { background: white; color: #1e0b2e; border: 2px solid white; flex: 1; }
-        .btn-yes:hover { transform: scale(1.05); box-shadow: 0 0 15px rgba(255,255,255,0.4); }
-        
+        .btn-yes:hover { transform: scale(1.05); }
         .btn-no { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.3); flex: 1; }
         .btn-no:hover { background: rgba(255,255,255,0.1); border-color: white; }
-
         .btn-full { width: 100%; background: #d8b4fe; color: #1e0b2e; margin-top: 20px; }
         .btn-full:hover { transform: scale(1.02); }
 
@@ -103,19 +99,19 @@
         }
         .gif-container img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
-        /* --- FLIP CARD GALLERY (BIGGER & TALLER) --- */
+        /* --- FLIP CARD GALLERY (BIGGER IMAGES FIX) --- */
         .gallery-grid { 
             display: grid; 
             grid-template-columns: 1fr 1fr; /* 2 columns */
-            gap: 10px; /* Small gap para dikit pictures */
+            gap: 8px; /* Maliit na gap para dikit sila */
             margin-bottom: 20px; 
         }
 
         .flip-card { 
             background-color: transparent; 
             width: 100%; 
-            /* DITO YUNG MAGIC: 2/3 Aspect Ratio = Mas Mahaba/Taller = Mas Malaki Tignan */
-            aspect-ratio: 2/3; 
+            /* GINAWA KONG FIXED HEIGHT NA MATANGKAD */
+            height: 220px; /* TALL PORTRAIT SIZE - Malaki na to sa mobile */
             perspective: 1000px; 
             cursor: pointer; 
         }
@@ -146,25 +142,24 @@
         .flip-card-back img { 
             width: 100%; 
             height: 100%; 
-            object-fit: cover; /* Ensures picture fills the tall card */
+            object-fit: cover; /* SINASAKOP BUONG CARD */
         }
 
         /* --- ANIMATIONS --- */
         .view-section { display: none; animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55); }
         @keyframes popIn { 0% { opacity: 0; transform: scale(0.8); } 100% { opacity: 1; transform: scale(1); } }
-        
         .shake { animation: shake 0.4s ease-in-out; }
         @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
-
         .blocked-icon { font-size: 60px; margin-top: 20px; animation: pulse 2s infinite; }
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
         
+        /* LETTER TYPING */
         .letter-content { 
-            max-height: 400px; /* Tinaasan ko para sa mahabang letter */
+            max-height: 400px; 
             overflow-y: auto; 
             text-align: left; 
             margin-top: 10px; 
-            font-size: 14px; /* Mas malinaw basahin */
+            font-size: 14px; 
             padding-right: 5px; 
             color: #eee; 
             white-space: pre-wrap; 
@@ -172,7 +167,6 @@
         }
         .letter-content::-webkit-scrollbar { width: 3px; }
         .letter-content::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.3); border-radius: 10px; }
-        
         .cursor { display: inline-block; width: 2px; background-color: #d8b4fe; animation: blink 1s infinite; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
