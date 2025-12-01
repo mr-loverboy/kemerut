@@ -25,45 +25,74 @@
         .star { position: absolute; background: white; border-radius: 50%; opacity: 0.8; animation: twinkle infinite ease-in-out; }
         @keyframes twinkle { 0%, 100% { opacity: 0.3; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1.2); } }
 
-        /* --- CONTAINER --- */
+        /* --- CONTAINER (MAXIMIZED FOR MOBILE) --- */
         .container {
             position: relative;
             z-index: 10;
-            width: 95%;          
-            max-width: 380px;    
-            padding: 30px 15px;  
+            
+            /* DITO ANG PAGBABAGO PARA LUMAKI: */
+            width: 95%;          /* 95% ng screen ang sakop (halos sagad) */
+            max-width: 420px;    /* Tinaasan ang limit para sa malalaking phones */
+            
+            /* Binawasan ang padding para mas malaki ang space ng pictures */
+            padding: 25px 15px;  
+            
+            /* Glass Effect */
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 25px;
+            border-radius: 20px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+            
             text-align: center;
             transition: all 0.5s ease;
         }
 
         /* --- TEXT --- */
-        h1 { font-size: 18px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 25px; color: #d8b4fe; font-weight: 700; }
-        p { font-size: 14px; line-height: 1.6; color: #f0f0f0; margin-bottom: 25px; }
+        h1 { font-size: 18px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; color: #d8b4fe; font-weight: 700; }
+        p { font-size: 14px; line-height: 1.6; color: #f0f0f0; margin-bottom: 20px; }
         
         /* --- INPUT --- */
         input { 
-            width: 100%; padding: 10px 0; background: transparent; border: none; border-bottom: 1px solid rgba(255, 255, 255, 0.3); 
-            color: white; text-align: center; font-family: 'Poppins', sans-serif; outline: none; margin-bottom: 5px; 
-            font-size: 28px; letter-spacing: 15px; font-weight: 600;
+            width: 100%; 
+            padding: 10px 0; 
+            background: transparent; 
+            border: none; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3); 
+            color: white; 
+            text-align: center; 
+            font-family: 'Poppins', sans-serif; 
+            outline: none; 
+            margin-bottom: 5px; 
+            font-size: 28px; 
+            letter-spacing: 15px; 
+            font-weight: 600;
         }
+        
         input:focus { border-bottom: 1px solid #d8b4fe; }
-        input::placeholder { color: rgba(255, 255, 255, 0.4); font-size: 14px; letter-spacing: 2px; font-weight: 400; text-transform: uppercase; }
+        
+        input::placeholder { 
+            color: rgba(255, 255, 255, 0.4); 
+            font-size: 14px; 
+            letter-spacing: 2px; 
+            font-weight: 400;
+            text-transform: uppercase;
+        }
 
         #warning-msg { color: #ff6b6b; font-size: 12px; margin-top: 15px; min-height: 18px; font-weight: 500; }
 
         /* --- BUTTONS --- */
         .button-group { display: flex; gap: 10px; justify-content: center; }
+
         .btn { padding: 12px; border: none; border-radius: 50px; font-size: 13px; font-weight: 600; cursor: pointer; transition: 0.2s; text-transform: uppercase; }
+        
         .btn-yes { background: white; color: #1e0b2e; border: 2px solid white; flex: 1; }
         .btn-yes:hover { transform: scale(1.05); box-shadow: 0 0 15px rgba(255,255,255,0.4); }
+        
         .btn-no { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.3); flex: 1; }
         .btn-no:hover { background: rgba(255,255,255,0.1); border-color: white; }
+
         .btn-full { width: 100%; background: #d8b4fe; color: #1e0b2e; margin-top: 20px; }
         .btn-full:hover { transform: scale(1.02); }
 
@@ -74,27 +103,76 @@
         }
         .gif-container img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
-        /* --- FLIP CARD GALLERY --- */
-        .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 20px; }
-        .flip-card { background-color: transparent; width: 100%; aspect-ratio: 3/4; perspective: 1000px; cursor: pointer; }
-        .flip-card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; border-radius: 15px; }
+        /* --- FLIP CARD GALLERY (BIGGER & TALLER) --- */
+        .gallery-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; /* 2 columns */
+            gap: 10px; /* Small gap para dikit pictures */
+            margin-bottom: 20px; 
+        }
+
+        .flip-card { 
+            background-color: transparent; 
+            width: 100%; 
+            /* DITO YUNG MAGIC: 2/3 Aspect Ratio = Mas Mahaba/Taller = Mas Malaki Tignan */
+            aspect-ratio: 2/3; 
+            perspective: 1000px; 
+            cursor: pointer; 
+        }
+
+        .flip-card-inner { 
+            position: relative; width: 100%; height: 100%; text-align: center; 
+            transition: transform 0.6s; transform-style: preserve-3d; border-radius: 12px; 
+        }
+        
         .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
-        .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; border-radius: 15px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 8px rgba(0,0,0,0.3); }
-        .flip-card-front { background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%); color: white; font-weight: bold; font-size: 12px; letter-spacing: 1px; }
-        .flip-card-back { background: white; transform: rotateY(180deg); overflow: hidden; }
-        .flip-card-back img { width: 100%; height: 100%; object-fit: cover; }
+
+        .flip-card-front, .flip-card-back { 
+            position: absolute; width: 100%; height: 100%; 
+            -webkit-backface-visibility: hidden; backface-visibility: hidden; 
+            border-radius: 12px; display: flex; align-items: center; justify-content: center; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3); 
+        }
+        
+        .flip-card-front { 
+            background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%); 
+            color: white; font-weight: bold; font-size: 14px; letter-spacing: 1px;
+        }
+        
+        .flip-card-back { 
+            background: white; transform: rotateY(180deg); overflow: hidden; 
+        }
+        
+        .flip-card-back img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; /* Ensures picture fills the tall card */
+        }
 
         /* --- ANIMATIONS --- */
         .view-section { display: none; animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55); }
         @keyframes popIn { 0% { opacity: 0; transform: scale(0.8); } 100% { opacity: 1; transform: scale(1); } }
+        
         .shake { animation: shake 0.4s ease-in-out; }
         @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+
         .blocked-icon { font-size: 60px; margin-top: 20px; animation: pulse 2s infinite; }
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
         
-        .letter-content { max-height: 300px; overflow-y: auto; text-align: left; margin-top: 10px; font-size: 13px; padding-right: 5px; color: #eee; white-space: pre-wrap; }
+        .letter-content { 
+            max-height: 400px; /* Tinaasan ko para sa mahabang letter */
+            overflow-y: auto; 
+            text-align: left; 
+            margin-top: 10px; 
+            font-size: 14px; /* Mas malinaw basahin */
+            padding-right: 5px; 
+            color: #eee; 
+            white-space: pre-wrap; 
+            line-height: 1.6;
+        }
         .letter-content::-webkit-scrollbar { width: 3px; }
         .letter-content::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.3); border-radius: 10px; }
+        
         .cursor { display: inline-block; width: 2px; background-color: #d8b4fe; animation: blink 1s infinite; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
@@ -204,7 +282,7 @@
     </div>
 
     <script>
-        // --- LETTER MESSAGE ---
+        // --- MESSAGE CONTENT ---
         const messageText = `I just want you to know this: you are the quiet certainty in a world full of doubts. I’ve crossed paths with people who only stayed halfway, but you… you’re the one my heart didn’t want to let go of.
 
 You make the ordinary feel lighter, and the heavy days feel survivable. I don’t say it often, but I choose you — intentionally, consistently, and without hesitation.
@@ -256,7 +334,7 @@ I love you, more than my words ever manage to say.
 
         function blockUser() { trap(); }
 
-        // --- LOGIN LOGIC WITH VALIDATION ---
+        // --- LOGIN LOGIC ---
         function checkPass() {
             if (isBlocked === 'true') return;
 
@@ -265,20 +343,19 @@ I love you, more than my words ever manage to say.
             const container = document.getElementById('main-container');
             const enteredValue = input.value;
 
-            // 1. VALIDATION: Check kung 2 digits ba ang laman
+            // VALIDATION: Check length
             if (enteredValue.length !== 2) {
                 container.classList.add('shake');
                 setTimeout(()=>container.classList.remove('shake'), 400);
                 warning.innerText = "Please enter 2 digits.";
                 warning.style.color = "#ff6b6b";
-                return; // STOP HERE! Wag bawasan ang attempts.
+                return; 
             }
 
-            // 2. CHECK PASSWORD
+            // CHECK PASSWORD
             if (enteredValue === correctPass) {
                 showView('view-q1');
             } else {
-                // WRONG PASSWORD (Now we decrease attempts)
                 attemptsLeft--;
                 localStorage.setItem('attemptsLeft', attemptsLeft);
                 
